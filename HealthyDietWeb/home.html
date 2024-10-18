@@ -1,0 +1,290 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" href="home.css">
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Epilogue%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>HDW Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f4f0] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#111811]">
+            <div class="size-4">
+            </div>
+            <img src="./img/Green LiFE.png" height="150px" width="150px" alt="">
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#111811] text-sm font-medium leading-normal" href="./home.html">Home</a>
+              <a class="text-[#111811] text-sm font-medium leading-normal" href="./natrionguide.html">Nutrients</a>
+              <a class="text-[#111811] text-sm font-medium leading-normal" href="./blog.html">Blog</a>
+              <a class="text-[#111811] text-sm font-medium leading-normal" href="./calories.html">Calculator BMI</a>
+              <a href="./login.html">
+                <b>Login</b></a>
+                <a href="./sign.html">
+                  <b>Sign up</b></a>
+            </div>
+            <div class="flex gap-2">
+              
+            
+            </div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://cdn.usegalileo.ai/stability/5e6f9c50-c8ea-4c3a-9c9b-e4a2d2c2adcc.png");'
+                >
+                  <div class="flex flex-col gap-2 text-left">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Eat better, feel better
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      Start your journey to a healthier you with our expert guidance and delicious, nutritious food.
+                    </h2>
+                  </div>
+                  <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#19e619] text-[#111811] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                  >
+                    <span class="truncate">
+                      <a href="./blog.html">Get started</a>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- countdown -->
+            <div class="countdown-container">
+              <h1 class="countdown-title">Countdown to special events</h1>
+              <div id="countdown">
+                  <div>
+                      <div id="days">12</div>
+                      <span>Day</span>
+                  </div>
+                  <div>
+                      <div id="hours">05</div>
+                      <span>Hrs</span>
+                  </div>
+                  <div>
+                      <div id="minutes">30</div>
+                      <span>Min</span>
+                  </div>
+                  <div>
+                      <div id="seconds">15</div>
+                      <span>Sec</span>
+                  </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-10 px-4 py-10 @container">
+              <div class="flex flex-col gap-4">
+                <h1
+                  class="text-[#111811] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
+                >
+              
+                  Power up with these superfoods
+                </h1>
+                <p class="text-[#111811] text-base font-normal leading-normal max-w-[720px]">
+                  Eating a balanced diet is key to good health. Here are some nutrient-packed foods to add to your grocery list.
+                </p>
+              </div>
+              <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-0">
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Command" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M180,144H160V112h20a36,36,0,1,0-36-36V96H112V76a36,36,0,1,0-36,36H96v32H76a36,36,0,1,0,36,36V160h32v20a36,36,0,1,0,36-36ZM160,76a20,20,0,1,1,20,20H160ZM56,76a20,20,0,0,1,40,0V96H76A20,20,0,0,1,56,76ZM96,180a20,20,0,1,1-20-20H96Zm16-68h32v32H112Zm68,88a20,20,0,0,1-20-20V160h20a20,20,0,0,1,0,40Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Fruits</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Rich in vitamins, minerals, and antioxidants. Can be fresh, frozen, or canned.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Carrot" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M232,64H203.31l26.35-26.34a8,8,0,0,0-11.32-11.32L192,52.69V24a8,8,0,0,0-16,0V56.57a64,64,0,0,0-77.2,10.12l0,0,0,0,0,0c-40.1,39.39-70.25,133.08-73.19,142.45a16,16,0,0,0,21.26,21.26c9.37-2.94,103.18-33.13,142.47-73.21A64,64,0,0,0,199.43,80H232a8,8,0,0,0,0-16Zm-54.12,82c-8.94,9.12-21.25,17.8-34.85,25.73l-25.38-25.39a8,8,0,0,0-11.32,11.32l22.09,22.09c-40.87,21.19-86.32,35.42-87,35.63A7.93,7.93,0,0,0,40,216a7.93,7.93,0,0,0,.59-1.41c.29-.93,28-89.58,64-130.67l33.77,33.77a8,8,0,0,0,11.32-11.32L116.18,72.88A48,48,0,0,1,177.88,146Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Vegetables</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Low in calories and high in nutrients. Choose a variety of colors.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Fish" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M168.06,75.94a12,12,0,1,1-12-12A12,12,0,0,1,168.06,75.94Zm39.87,81c-20.76,26.37-53.85,40.74-98.41,42.77l-22,51.42A8,8,0,0,1,80.13,256l-.51,0a8,8,0,0,1-7.19-5.78L57.62,198.37,5.8,183.53a8,8,0,0,1-1-15.05l51.43-22c2-44.57,16.41-77.66,42.79-98.41,43.21-34,104.91-22.83,116.84-20.25a16,16,0,0,1,12.26,12.26C230.76,52,241.94,113.76,207.93,157ZM161.6,172.61a52.12,52.12,0,0,1-33.42-44.79A52.1,52.1,0,0,1,83.4,94.41c-7,15.86-10.76,35.11-11.3,57.62a8,8,0,0,1-4.85,7.16L31.84,174.34l34.46,9.87a8,8,0,0,1,5.49,5.49l9.84,34.46,15.18-35.41A8,8,0,0,1,104,183.9C126.48,183.37,145.73,179.59,161.6,172.61ZM212.53,43.47c-10.7-2.32-66-12.39-103.57,17.18A80.9,80.9,0,0,0,96.13,73.32a36,36,0,0,0,39.36,38.47,8,8,0,0,1,8.72,8.72,36,36,0,0,0,38.49,39.36,80.64,80.64,0,0,0,12.65-12.81C224.92,109.49,214.85,54.18,212.53,43.47Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Fish &amp; Seafood</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">High in protein and omega-3 fatty acids. Enjoy baked, grilled, or steamed.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Coffee" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M80,56V24a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Zm40,8a8,8,0,0,0,8-8V24a8,8,0,0,0-16,0V56A8,8,0,0,0,120,64Zm32,0a8,8,0,0,0,8-8V24a8,8,0,0,0-16,0V56A8,8,0,0,0,152,64Zm96,56v8a40,40,0,0,1-37.51,39.91,96.59,96.59,0,0,1-27,40.09H208a8,8,0,0,1,0,16H32a8,8,0,0,1,0-16H56.54A96.3,96.3,0,0,1,24,136V88a8,8,0,0,1,8-8H208A40,40,0,0,1,248,120ZM200,96H40v40a80.27,80.27,0,0,0,45.12,72h69.76A80.27,80.27,0,0,0,200,136Zm32,24a24,24,0,0,0-16-22.62V136a95.78,95.78,0,0,1-1.2,15A24,24,0,0,0,232,128Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Dairy</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Good source of calcium and protein. Opt for low-fat or fat-free options.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Grains" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M208,56a87.53,87.53,0,0,0-31.85,6c-14.32-29.7-43.25-44.46-44.57-45.12a8,8,0,0,0-7.16,0c-1.33.66-30.25,15.42-44.57,45.12A87.53,87.53,0,0,0,48,56a8,8,0,0,0-8,8v80a88,88,0,0,0,176,0V64A8,8,0,0,0,208,56ZM120,215.56A72.1,72.1,0,0,1,56,144V128.44A72.1,72.1,0,0,1,120,200Zm0-66.1a88,88,0,0,0-64-37.09V72.44A72.1,72.1,0,0,1,120,144ZM94.15,69.11c9.22-19.21,26.41-31.33,33.85-35.9,7.44,4.58,24.63,16.7,33.84,35.9A88.61,88.61,0,0,0,128,107.36,88.57,88.57,0,0,0,94.15,69.11ZM200,144a72.1,72.1,0,0,1-64,71.56V200a72.1,72.1,0,0,1,64-71.56Zm0-31.63a88,88,0,0,0-64,37.09V144a72.1,72.1,0,0,1,64-71.56Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Whole Grains</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">High in fiber and B vitamins. Include brown rice, oats, and whole-wheat bread.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Egg" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M186.66,59.56C168.47,32.29,146.54,16,128,16S87.53,32.29,69.34,59.56C50.7,87.54,40,121.23,40,152a88,88,0,0,0,176,0C216,121.23,205.3,87.54,186.66,59.56ZM128,224a72.08,72.08,0,0,1-72-72c0-27.69,9.72-58.15,26.66-83.56C97.19,46.64,115.41,32,128,32s30.81,14.64,45.34,36.44C190.28,93.85,200,124.31,200,152A72.08,72.08,0,0,1,128,224Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Eggs</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Rich in protein and nutrients. Boil, poach, scramble, or make an omelet.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Leaf" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49c.57,15.92,5.21,32,13.79,47.85l-19.51,19.5a8,8,0,0,0,11.32,11.32l19.5-19.51C81,210.73,97.09,215.37,113,215.94q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07ZM153.75,189.5c-22.75,13.78-49.68,14-76.71.77l88.63-88.62a8,8,0,0,0-11.32-11.32L65.73,179c-13.19-27-13-54,.77-76.71,22.09-36.47,74.6-56.44,141.31-54.06C210.2,114.89,190.22,167.41,153.75,189.5Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Leafy Greens</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Nutrient-dense and versatile. Use in salads, smoothies, or sandwiches.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="Grains" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M208,56a87.53,87.53,0,0,0-31.85,6c-14.32-29.7-43.25-44.46-44.57-45.12a8,8,0,0,0-7.16,0c-1.33.66-30.25,15.42-44.57,45.12A87.53,87.53,0,0,0,48,56a8,8,0,0,0-8,8v80a88,88,0,0,0,176,0V64A8,8,0,0,0,208,56ZM120,215.56A72.1,72.1,0,0,1,56,144V128.44A72.1,72.1,0,0,1,120,200Zm0-66.1a88,88,0,0,0-64-37.09V72.44A72.1,72.1,0,0,1,120,144ZM94.15,69.11c9.22-19.21,26.41-31.33,33.85-35.9,7.44,4.58,24.63,16.7,33.84,35.9A88.61,88.61,0,0,0,128,107.36,88.57,88.57,0,0,0,94.15,69.11ZM200,144a72.1,72.1,0,0,1-64,71.56V200a72.1,72.1,0,0,1,64-71.56Zm0-31.63a88,88,0,0,0-64,37.09V144a72.1,72.1,0,0,1,64-71.56Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Gluten-Free Grains</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Safe for people with celiac disease. Examples include quinoa, buckwheat, and amaranth.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#dce5dc] bg-white p-4 flex-col">
+                  <div class="text-[#111811]" data-icon="OrangeSlice" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M248,80H8a8,8,0,0,0-8,8,128,128,0,0,0,256,0A8,8,0,0,0,248,80ZM77.4,149.91l42.6-42.6V167.6A79.59,79.59,0,0,1,77.4,149.91ZM66.09,138.6A79.59,79.59,0,0,1,48.4,96h60.29ZM136,107.31l42.6,42.6A79.59,79.59,0,0,1,136,167.6Zm53.91,31.29L147.31,96H207.6A79.59,79.59,0,0,1,189.91,138.6ZM128,200A112.15,112.15,0,0,1,16.28,96H32.34a96,96,0,0,0,191.32,0h16.06A112.15,112.15,0,0,1,128,200Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-[#111811] text-base font-bold leading-tight">Berries</h2>
+                    <p class="text-[#638863] text-sm font-normal leading-normal">Packed with fiber, vitamins, and antioxidants. Add to yogurt, oatmeal, or cereal.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div class="flex flex-col gap-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://cdn.usegalileo.ai/sdxl10/bd522474-0936-4796-9bb3-6e9a9969eb5a.png");'
+                ></div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://cdn.usegalileo.ai/stability/d13f6827-115d-4c99-b73e-097a5e555952.png");'
+                ></div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://cdn.usegalileo.ai/stability/6e767081-656f-4b0d-8114-dc15dad0a965.png");'
+                ></div>
+              </div>
+            </div>
+            <div class="gallery-container">
+              
+              <div class="gallery">
+                  <div class="gallery-item">
+                      <img src="https://fado.vn/blog/wp-content/uploads/2022/04/wwd0IEqSZvjpYSpKxRb40PVIVX66_DPGYIXfJ8wLpZ6H7anhvNVvLNukxi_Q_7-5GCqT62BQKY287xj17WAvqmw_ogUCzspu6NlV.jpg" alt="Ảnh 1">
+
+                      <h2>Fatty fish</h2>
+                      <p>Omega-3 fatty acids are a group of essential fats that you must obtain through your diet because your body can’t produce them on its own.</p>
+                      <p>Fatty fish like salmon and albacore tuna are rich in two types of omega-3s — docosahexaenoic acid (DHA) and eicosapentaenoic acid (EPA) — that are linked to lower levels of depression</p>
+                      <p>Omega-3s contribute to the fluidity of your brain’s cell membrane and appear to play key roles in brain development and cell signaling</p>
+                      <p>While research is mixed, one review of clinical trials showed that in some studies, consuming omega-3’s in the form of fish oil lower depression scores</p>
+                      <p>Although there’s no standard dose, most experts agree that most adults should get at least 250–500 mg of combined EPA and DHA per day</p>
+                      <p>Given that a 3.5-ounce (100-gram) serving of salmon provides 2,260 mg of EPA and DHA, eating this fish a few times per week is a great way to get these fats into your diet</p>
+                      
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://fado.vn/blog/wp-content/uploads/2022/04/VFZxt75cNHDq_EN9kPJFTY2aeJFrvC-uCdRjlUJkoyScprOJLhQSZBF6FHlvvOqrn242jHdWMm6NGhA8KTkHFgu1TjPhYC5iYu4Z.jpg" alt="Ảnh 2">
+                      <h2>Fermented foods</h2>
+                      <p>Fermented foods, which include kimchi, yogurt, kefir, kombucha, and sauerkraut, may improve gut health and mood.</p>
+                      <p>The fermentation process allows live bacteria to thrive in foods that are then able to convert sugars into alcohol and acids</p>
+                      <p>During this process, probiotics are created. These live microorganisms support the growth of healthy bacteria in your gut and may increase serotonin levels</p>
+                      <p>It’s important to note that not all fermented foods are significant sources of probiotics, such as in the case of beer, some breads, and wine, due to cooking and filtering.</p>
+                      <p>Serotonin is a neurotransmitter that affects many facets of human behavior, such as mood, stress response, appetite, and sexual drive. Up to 90% of your body’s serotonin is produced by your gut microbiome, or the collection of healthy bacteria in your gut</p>
+                      <p>In addition, the gut microbiome plays a role in brain health. Research is beginning to show a connection between healthy gut bacteria and lower rates of depression</p>
+                      
+                      
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://fado.vn/blog/wp-content/uploads/2022/04/cvulM2cHiso2SRXz1Sasxou3OYrXkjDiaUExBio5J4_a_iSgM3q9jRQXGHHuBdr_ibsUeEGXV1HLhk2PiEpt4izigQ2RykgvHt_M.jpg" alt="Ảnh 3">
+                      <h2>Bananas</h2>
+                      <p>Bananas may help turn a frown upside down.</p>
+                      <p>They’re high in vitamin B6, which helps synthesize feel-good neurotransmitters like dopamine and serotonin</p>
+                      <p>Furthermore, one large banana (136 grams) provides 16 grams of sugar and 3.5 grams of fiber</p>
+                      <p>When paired with fiber, sugar is released slowly into your bloodstream, allowing for stable blood sugar levels and better mood control. Blood sugar levels that are too low may lead to irritability and mood swings </p>
+                      <p>Finally, this ubiquitous tropical fruit, especially when still showing green on the peel, is an excellent source of prebiotics, a type of fiber that helps feed healthy bacteria in your gut. A robust gut microbiome is associated with lower rates of mood disorders</p>
+                      
+                  </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="home.js"></script>
+  </body>
+</html>

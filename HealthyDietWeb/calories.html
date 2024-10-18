@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
+<title>Galileo Design</title>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?display=swap&family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900"
+/>
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<style>
+  body {
+    font-family: 'Manrope', 'Noto Sans', sans-serif;
+    background-color: #f9fafb;
+    color: #111418;
+  }
+
+  .form-input {
+    background-color: #f0f2f4;
+  }
+
+  input::placeholder, select {
+    color: #637488;
+  }
+
+  .form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1979e6;
+  }
+
+  button {
+    background-color: #1979e6;
+    transition: background-color 0.2s;
+  }
+
+  button:hover {
+    background-color: #165cb8;
+  }
+</style>
+</head>
+<body>
+<div
+  class="flex flex-col min-h-screen bg-white overflow-x-hidden"
+>
+  <header
+    class="flex items-center justify-between border-b border-solid border-b-[#f0f2f4] px-10 py-3"
+  >
+    <div class="flex items-center gap-4">
+      <div class="size-4">
+       
+          <path
+            d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+      <div class="logo">
+        <img src="./img/Green LiFE.png" height="150px" , width="150px" alt=""/>
+      </div>
+    </div>
+    <nav class="flex gap-8 text-sm font-medium">
+      <a href="./home.html">Home</a>
+      <a href="./natrionguide.html">Nutrients</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./calories.html">Calculator BMI</a>
+    </nav>
+ 
+         <div class="rounded-xl px-4 py-2 ">
+           
+         </div>
+       
+  </header>
+
+  <main class="flex justify-center py-8">
+    <div class="w-full max-w-3xl px-4">
+      <h1 class="text-center text-[22px] font-bold mb-4">
+        Calculate Daily Caloric Needs
+      </h1>
+      <p class="text-center text-base mb-6">
+        Your Basal Metabolic Rate (BMR) is an estimate of the number
+        of calories your body needs to maintain basic physiological
+        functions at rest.
+      </p>
+
+      <div class="bg-white p-8 shadow-lg rounded-lg">
+        <form id="calorieForm">
+          <div class="flex flex-wrap gap-4 mb-4">
+            <label class="flex flex-col w-full md:w-1/2">
+              <span class="text-base font-medium">Age</span>
+              <input
+                id="age"
+                type="number"
+                class="form-input h-14 p-4 rounded-xl"
+                placeholder="Enter age"
+                required
+              />
+            </label>
+
+            <label class="flex flex-col w-full md:w-1/2">
+              <span class="text-base font-medium">Sex</span>
+              <select
+                id="sex"
+                class="form-input h-14 p-4 rounded-xl"
+                required
+              >
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="flex flex-wrap gap-4 mb-4">
+            <label class="flex flex-col w-full md:w-1/2">
+              <span class="text-base font-medium">Height (cm)</span>
+              <input
+                id="height"
+                type="number"
+                class="form-input h-14 p-4 rounded-xl"
+                placeholder="e.g. 170"
+                required
+              />
+            </label>
+
+            <label class="flex flex-col w-full md:w-1/2">
+              <span class="text-base font-medium">Weight (kg)</span>
+              <input
+                id="weight"
+                type="number"
+                class="form-input h-14 p-4 rounded-xl"
+                placeholder="e.g. 65"
+                required
+              />
+            </label>
+          </div>
+
+          <label class="flex flex-col mb-6">
+            <span class="text-base font-medium">Activity Level</span>
+            <select
+              id="activity"
+              class="form-input h-14 p-4 rounded-xl"
+              required
+            >
+              <option value="">Select</option>
+              <option value="1.2">Sedentary (little or no exercise)</option>
+              <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+              <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+              <option value="1.725">Very active (hard exercise/sports 6-7 days a week)</option>
+              <option value="1.9">Super active (very hard exercise & a physical job)</option>
+            </select>
+          </label>
+
+          <button
+            type="submit"
+            class="w-full h-12 bg-[#1979e6] text-white font-bold rounded-xl"
+          >
+            Calculate
+          </button>
+        </form>
+
+        <p id="result" class="mt-6 text-lg font-semibold"></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('calorieForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const age = parseInt(document.getElementById('age').value);
+      const sex = document.getElementById('sex').value;
+      const height = parseInt(document.getElementById('height').value);
+      const weight = parseInt(document.getElementById('weight').value);
+      const activity = parseFloat(document.getElementById('activity').value);
+
+      // Kiểm tra xem tất cả các giá trị có hợp lệ hay không
+      if (isNaN(age) || isNaN(height) || isNaN(weight) || isNaN(activity) || sex === "") {
+        alert('Vui lòng nhập đầy đủ và chính xác tất cả các thông tin.');
+        return;
+      }
+
+      let bmr;
+
+      // Tính BMR dựa trên phương trình Harris-Benedict
+      if (sex === 'male') {
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+      } else {
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+      }
+
+      const caloricNeeds = bmr * activity;
+
+      // Log kết quả ra console để kiểm tra
+      console.log('BMR:', bmr);
+      console.log('Caloric Needs:', caloricNeeds);
+
+      // Hiển thị kết quả
+      document.getElementById('result').innerText = `Your daily caloric need is approximately ${Math.round(caloricNeeds)} calories.`;
+    });
+  </script>
+</body>
+</html>

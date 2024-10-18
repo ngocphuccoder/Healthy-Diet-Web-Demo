@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900"
+  />
+  <title>Healthy Plate Sign In</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    /* Custom CSS */
+    .custom-bg {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.4)
+        ),
+        url("https://cdn.usegalileo.ai/stability/bfcef8c8-9ccd-4d5b-9d1d-d20b02001514.png");
+      background-size: cover;
+      background-position: center;
+    }
+    .custom-checkbox:checked {
+      background-image: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(17,24,17)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e');
+    }
+
+    /* Error and Success Messages */
+    .error-message {
+      color: #dc2626; /* Tailwind's red-600 */
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+    .success-message {
+      color: #16a34a; /* Tailwind's green-600 */
+      font-size: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  </style>
+  <script>
+    // Function to handle form submission, show success message and redirect to login page
+    function handleSignUp(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Clear previous error messages
+      clearErrors();
+
+      // Get form values
+      const fullName = event.target.elements[0].value.trim();
+      const email = event.target.elements[1].value.trim();
+      const password = event.target.elements[2].value;
+      const confirmPassword = event.target.elements[3].value;
+      const termsChecked = event.target.elements[4].checked;
+
+      let isValid = true;
+
+      // Validate Full Name
+      if (fullName === "") {
+        displayError(0, "Full Name is required.");
+        isValid = false;
+      }
+
+      // Validate Email
+      if (email === "") {
+        displayError(1, "Email is required.");
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        displayError(1, "Please enter a valid email address.");
+        isValid = false;
+      } else if (isEmailTaken(email)) {
+        displayError(1, "Email đã tồn tại."); // "Email already exists."
+        isValid = false;
+      }
+
+      // Validate Password
+      if (password === "") {
+        displayError(2, "Password is required.");
+        isValid = false;
+      } else if (password.length < 6) {
+        displayError(2, "Password must be at least 6 characters.");
+        isValid = false;
+      }
+
+      // Validate Confirm Password
+      if (confirmPassword === "") {
+        displayError(3, "Please confirm your password.");
+        isValid = false;
+      } else if (password !== confirmPassword) {
+        displayError(3, "Mật khẩu và xác nhận mật khẩu không khớp."); // "Passwords do not match."
+        isValid = false;
+      }
+
+      // Validate Terms and Conditions
+      if (!termsChecked) {
+        displayError(4, "Bạn phải đồng ý với các Điều khoản và Điều kiện."); // "You must agree to the Terms and Conditions."
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Simulate saving user data (e.g., to localStorage)
+        saveUser(fullName, email, password);
+
+        // Show success message
+        const successMessage = document.getElementById("successMessage");
+        successMessage.textContent = "Đăng Ký Thành Công!"; // "Registration Successful!"
+        successMessage.classList.add("success-message");
+
+        // Redirect to login page after a short delay
+        setTimeout(() => {
+          window.location.href = "login.html"; // Change this to your login page URL
+        }, 2000);
+      }
+    }
+
+    // Function to display error messages
+    function displayError(index, message) {
+      const errorElement = document.getElementById(`error-${index}`);
+      if (errorElement) {
+        errorElement.textContent = message;
+      }
+    }
+
+    // Function to clear all error messages
+    function clearErrors() {
+      for (let i = 0; i < 5; i++) {
+        const errorElement = document.getElementById(`error-${i}`);
+        if (errorElement) {
+          errorElement.textContent = "";
+        }
+      }
+      const successMessage = document.getElementById("successMessage");
+      successMessage.textContent = "";
+      successMessage.classList.remove("success-message");
+    }
+
+    // Function to validate email format
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+
+    // Function to check if email is already taken (simulated using localStorage)
+    function isEmailTaken(email) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      return users.some(user => user.email === email);
+    }
+
+    // Function to save user data (simulated using localStorage)
+    function saveUser(fullName, email, password) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      users.push({ fullName, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans">
+  <div class="relative flex flex-col min-h-screen justify-center items-center">
+    <header class="flex items-center justify-between w-full p-4 bg-white border-b border-gray-200">
+      <div class="flex items-center gap-4 text-gray-900">
+        <h2 class="text-lg font-bold tracking-tight">
+          <img src="./img/Green LiFE.png" height="150px" width="150px" alt="Logo" />
+          <a href="./home.html"></a>
+        </h2>
+      </div>
+    </header>
+
+    <!-- Sign Up Card -->
+    <div class="max-w-lg w-full bg-white p-8 shadow-md rounded-lg">
+      <div class="custom-bg p-6 text-center rounded-xl text-white">
+        <h1 class="text-4xl font-black">Sign Up!</h1>
+        <p class="text-base mt-2">Create your Healthy Plate account</p>
+      </div>
+
+      <!-- Sign Up Form -->
+      <form id="signUpForm" onsubmit="handleSignUp(event)">
+        <!-- Full Name Input -->
+        <div class="mt-6">
+          <label class="block">
+            <span class="text-gray-700 font-medium">Full Name</span>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+              required
+            />
+          </label>
+          <div id="error-0" class="error-message"></div>
+        </div>
+
+        <!-- Email Input -->
+        <div class="mt-6">
+          <label class="block">
+            <span class="text-gray-700 font-medium">Email</span>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+              required
+            />
+          </label>
+          <div id="error-1" class="error-message"></div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="mt-6">
+          <label class="block">
+            <span class="text-gray-700 font-medium">Password</span>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+              required
+            />
+          </label>
+          <div id="error-2" class="error-message"></div>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div class="mt-6">
+          <label class="block">
+            <span class="text-gray-700 font-medium">Confirm Password</span>
+            <input
+              type="password"
+              placeholder="Confirm your password"
+              class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+              required
+            />
+          </label>
+          <div id="error-3" class="error-message"></div>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="flex items-center mt-6">
+          <input
+            type="checkbox"
+            class="custom-checkbox h-5 w-5 border-gray-300 text-green-600 rounded focus:ring-0"
+            required
+          />
+          <span class="ml-3 text-gray-700">I agree to the Terms and Conditions</span>
+        </div>
+        <div id="error-4" class="error-message"></div>
+
+        <!-- Success Message -->
+        <div id="successMessage"></div>
+
+        <!-- Sign Up Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="w-full py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition"
+          >
+            Đăng ký
+          </button>
+        </div>
+      </form>
+
+      <!-- Sign In Redirect -->
+      <p class="mt-6 text-center text-sm text-gray-600">
+        Already have an account?
+        <a href="./login.html" class="text-green-600 underline">Login </a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

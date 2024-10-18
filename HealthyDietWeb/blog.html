@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap"
+  />
+  <title>Healthy Plate Blog</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    /* Custom CSS for Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.375rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  <div class="container mx-auto px-6 py-8">
+    <!-- Header -->
+    <div class="mb-8 text-center">
+      <h1 class="text-4xl font-bold text-gray-900">Healthy Plate Blog</h1>
+      <p class="text-gray-600 mt-2">Tips and articles about healthy eating</p>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+      <!-- Search Input -->
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search blog posts..."
+        class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-md focus:border-green-500 focus:outline-none"
+        oninput="filterPosts()"
+      />
+      <!-- Category Filter -->
+      <select
+        id="categoryFilter"
+        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:border-green-500 focus:outline-none"
+        onchange="filterPosts()"
+      >
+        <option value="All">All Categories</option>
+        <option value="Diet Plans">Diet Plans</option>
+        <option value="Recipes">Recipes</option>
+        <option value="Nutrition">Nutrition</option>
+        <option value="Weight Loss">Weight Loss</option>
+        <option value="Exercise">Exercise</option>
+        <option value="Health">Health</option>
+        <option value="Disease Prevention">Disease Prevention</option>
+      </select>
+    </div>
+
+    <!-- Blog Posts -->
+    <div id="blogPosts" class="space-y-8">
+      <!-- Blog Post Template -->
+      <!-- Repeat this block for each blog post -->
+      <!-- Blog Post 1 -->
+      <div class="blog-post flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow-md" data-categories="diet plans nutrition">
+        <!-- Blog Content -->
+        <div class="flex-1">
+          <p class="text-sm text-green-600">Jan 12, 2023</p>
+          <h2 class="text-xl font-bold text-gray-900 post-title">The 8 Best Diet Plans of 2023</h2>
+          <p class="text-gray-600 mt-2 post-content">
+            Get an overview of the most popular diets this year, including the Mediterranean diet, DASH diet, and more.
+          </p>
+          <!-- Read More Button -->
+          <button
+            type="button"
+            class="mt-4 px-4 py-2 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition"
+            onclick="toggleFullContent(this)"
+            data-index="1"
+          >
+            Read more
+          </button>
+          <!-- Full Content (Hidden by Default) -->
+          <div id="full-content-1" class="full-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700">
+              The year 2023 has seen a variety of diet plans gaining popularity, each with its unique approach to health and weight management. Here are the top 8 diet plans you should consider:
+            </p>
+            <ol class="list-decimal list-inside mt-2 text-gray-700">
+              <li><strong>Mediterranean Diet:</strong> Emphasizes fruits, vegetables, whole grains, olive oil, and lean proteins.</li>
+              <li><strong>DASH Diet:</strong> Designed to combat high blood pressure by reducing sodium intake and focusing on nutrient-rich foods.</li>
+              <li><strong>Keto Diet:</strong> Low-carb, high-fat diet aimed at inducing ketosis for weight loss.</li>
+              <li><strong>Intermittent Fasting:</strong> Involves cycling between periods of eating and fasting.</li>
+              <li><strong>Plant-Based Diet:</strong> Focuses on foods derived from plants, including vegetables, grains, nuts, and seeds.</li>
+              <li><strong>Paleo Diet:</strong> Based on foods presumed to have been available to Paleolithic humans.</li>
+              <li><strong>Whole30:</strong> 30-day elimination diet that removes sugar, alcohol, grains, legumes, soy, and dairy.</li>
+              <li><strong>Flexitarian Diet:</strong> Primarily vegetarian with occasional meat and fish consumption.</li>
+            </ol>
+            <p class="mt-2 text-gray-700">
+              Each of these diets has its own set of benefits and may cater to different health goals. It's essential to consult with a healthcare provider before starting any new diet plan to ensure it aligns with your individual health needs.
+            </p>
+            <!-- Social Sharing Buttons -->
+            <div class="social-buttons mt-4 flex space-x-4">
+              <a href="#" title="Share on Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#3b5998" viewBox="0 0 24 24">
+                  <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.35v21.3C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.616h-3.12V24h6.116C23.4 24 24 23.4 24 22.65v-21.3C24 .6 23.4 0 22.675 0z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#1DA1F2" viewBox="0 0 24 24">
+                  <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.945 13.945 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.574 4.897 4.897 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.588 3.417A9.867 9.867 0 0 1 .96 19.54a13.924 13.924 0 0 0 7.548 2.213c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#0077B5" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.25 10.268h-3v-4.5c0-1.355-.024-3.097-1.886-3.097-1.888 0-2.176 1.473-2.176 2.989v4.59h-3v-9h2.879v1.23h.041c.401-.761 1.379-1.562 2.838-1.562 3.037 0 3.6 2.0 3.6 4.609v4.616z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog Image -->
+        <div
+          class="w-full md:w-1/3 bg-center bg-no-repeat bg-cover rounded-xl cursor-pointer"
+          style='background-image: url("https://cdn.usegalileo.ai/sdxl10/dbf80978-c634-44d2-a20f-c59af5610acf.png");'
+          onclick="openLightbox('https://cdn.usegalileo.ai/sdxl10/dbf80978-c634-44d2-a20f-c59af5610acf.png')"
+        ></div>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="blog-post flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow-md" data-categories="nutrition recipes">
+        <!-- Blog Content -->
+        <div class="flex-1">
+          <p class="text-sm text-green-600">Feb 23, 2023</p>
+          <h2 class="text-xl font-bold text-gray-900 post-title">10 Easy Healthy Dinner Recipes for Busy Weeknights</h2>
+          <p class="text-gray-600 mt-2 post-content">
+            Find simple, nutritious recipes to make for dinner, from one-pan meals to slow cooker dishes.
+          </p>
+          <!-- Read More Button -->
+          <button
+            type="button"
+            class="mt-4 px-4 py-2 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition"
+            onclick="toggleFullContent(this)"
+            data-index="2"
+          >
+            Read more
+          </button>
+          <!-- Full Content (Hidden by Default) -->
+          <div id="full-content-2" class="full-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700">
+              Busy weeknights often leave little time for elaborate meals. Here are 10 easy and healthy dinner recipes that can be prepared quickly:
+            </p>
+            <ol class="list-decimal list-inside mt-2 text-gray-700">
+              <li><strong>One-Pan Baked Salmon and Vegetables:</strong> Season salmon fillets with herbs and bake alongside a mix of your favorite vegetables.</li>
+              <li><strong>Stir-Fried Chicken and Broccoli:</strong> Quick stir-fry with chicken breast, broccoli, and a light soy-based sauce.</li>
+              <li><strong>Vegetarian Tacos:</strong> Use black beans, corn, and avocado in soft tortillas for a nutritious meal.</li>
+              <li><strong>Quinoa and Veggie Bowls:</strong> Combine cooked quinoa with roasted vegetables and a tahini dressing.</li>
+              <li><strong>Egg and Spinach Breakfast for Dinner:</strong> Scrambled eggs with fresh spinach and whole-grain toast.</li>
+              <li><strong>Slow Cooker Lentil Soup:</strong> Prepare in the morning and have a hearty soup ready by evening.</li>
+              <li><strong>Turkey and Zucchini Meatballs:</strong> Bake meatballs made from lean turkey and grated zucchini.</li>
+              <li><strong>Greek Yogurt Chicken Salad:</strong> Mix shredded chicken with Greek yogurt, celery, and grapes for a light salad.</li>
+              <li><strong>Whole Wheat Pasta with Pesto and Cherry Tomatoes:</strong> Toss cooked pasta with homemade pesto and fresh cherry tomatoes.</li>
+              <li><strong>Grilled Vegetable Sandwiches:</strong> Layer grilled vegetables with hummus in whole-grain bread.</li>
+            </ol>
+            <p class="mt-2 text-gray-700">
+              These recipes are not only quick to prepare but also packed with nutrients, ensuring that you maintain a balanced diet even on the busiest of nights.
+            </p>
+            <!-- Social Sharing Buttons -->
+            <div class="social-buttons mt-4 flex space-x-4">
+              <a href="#" title="Share on Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#3b5998" viewBox="0 0 24 24">
+                  <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.35v21.3C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.616h-3.12V24h6.116C23.4 24 24 23.4 24 22.65v-21.3C24 .6 23.4 0 22.675 0z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#1DA1F2" viewBox="0 0 24 24">
+                  <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.945 13.945 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.574 4.897 4.897 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.588 3.417A9.867 9.867 0 0 1 .96 19.54a13.924 13.924 0 0 0 7.548 2.213c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#0077B5" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.25 10.268h-3v-4.5c0-1.355-.024-3.097-1.886-3.097-1.888 0-2.176 1.473-2.176 2.989v4.59h-3v-9h2.879v1.23h.041c.401-.761 1.379-1.562 2.838-1.562 3.037 0 3.6 2.0 3.6 4.609v4.616z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog Image -->
+        <div
+          class="w-full md:w-1/3 bg-center bg-no-repeat bg-cover rounded-xl cursor-pointer"
+          style='background-image: url( "https://th.bing.com/th/id/R.75bb1bcffcc8d676c8983b8b41ae80c5?rik=hyRNHtB3jiIzOQ&pid=ImgRaw&r=0");'
+          onclick="openLightbox('https://th.bing.com/th/id/R.75bb1bcffcc8d676c8983b8b41ae80c5?rik=hyRNHtB3jiIzOQ&pid=ImgRaw&r=0')"
+        ></div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="blog-post flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow-md" data-categories="nutrition health">
+        <!-- Blog Content -->
+        <div class="flex-1">
+          <p class="text-sm text-green-600">Mar 15, 2023</p>
+          <h2 class="text-xl font-bold text-gray-900 post-title">5 Nutrition Myths Debunked by Dietitians</h2>
+          <p class="text-gray-600 mt-2 post-content">
+            Learn about common misconceptions about nutrition, such as the idea that carbs are bad for you or that detox diets are effective.
+          </p>
+          <!-- Read More Button -->
+          <button
+            type="button"
+            class="mt-4 px-4 py-2 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition"
+            onclick="toggleFullContent(this)"
+            data-index="3"
+          >
+            Read more
+          </button>
+          <!-- Full Content (Hidden by Default) -->
+          <div id="full-content-3" class="full-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700">
+              Nutrition is a field rife with myths and misconceptions that can lead to confusion and unhealthy habits. Here are five common nutrition myths debunked by dietitians:
+            </p>
+            <ol class="list-decimal list-inside mt-2 text-gray-700">
+              <li><strong>Myth 1: Carbohydrates Are Bad for You</strong>
+                <p>Carbohydrates are a primary energy source for the body. The key is to choose complex carbs like whole grains, vegetables, and legumes over refined carbs and sugars.</p>
+              </li>
+              <li><strong>Myth 2: Detox Diets Cleanse Your Body</strong>
+                <p>The liver and kidneys effectively detoxify the body. Detox diets can often be unbalanced and may lead to nutrient deficiencies.</p>
+              </li>
+              <li><strong>Myth 3: All Fats Are Unhealthy</strong>
+                <p>Healthy fats, such as those found in avocados, nuts, and olive oil, are essential for brain health and hormone production. It's saturated and trans fats that should be limited.</p>
+              </li>
+              <li><strong>Myth 4: You Need Supplements to Be Healthy</strong>
+                <p>Most people can get the necessary nutrients from a balanced diet. Supplements should only be used to address specific deficiencies as advised by a healthcare provider.</p>
+              </li>
+              <li><strong>Myth 5: Skipping Meals Helps Lose Weight</strong>
+                <p>Skipping meals can lead to overeating later and disrupt metabolism. Regular, balanced meals support sustained energy and weight management.</p>
+              </li>
+            </ol>
+            <p class="mt-2 text-gray-700">
+              Understanding the facts about nutrition can help you make informed decisions and adopt healthier eating habits.
+            </p>
+            <!-- Social Sharing Buttons -->
+            <div class="social-buttons mt-4 flex space-x-4">
+              <a href="#" title="Share on Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#3b5998" viewBox="0 0 24 24">
+                  <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.35v21.3C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.616h-3.12V24h6.116C23.4 24 24 23.4 24 22.65v-21.3C24 .6 23.4 0 22.675 0z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#1DA1F2" viewBox="0 0 24 24">
+                  <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.945 13.945 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.574 4.897 4.897 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.588 3.417A9.867 9.867 0 0 1 .96 19.54a13.924 13.924 0 0 0 7.548 2.213c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#0077B5" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.25 10.268h-3v-4.5c0-1.355-.024-3.097-1.886-3.097-1.888 0-2.176 1.473-2.176 2.989v4.59h-3v-9h2.879v1.23h.041c.401-.761 1.379-1.562 2.838-1.562 3.037 0 3.6 2.0 3.6 4.609v4.616z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog Image -->
+        <div
+          class="w-full md:w-1/3 bg-center bg-no-repeat bg-cover rounded-xl cursor-pointer"
+          style='background-image: url("https://th.bing.com/th/id/R.9bc13778c038059b7702ec9712d33a71?rik=XUUtkwz39WJwxg&pid=ImgRaw&r=0");'
+          onclick="openLightbox('https://th.bing.com/th/id/R.9bc13778c038059b7702ec9712d33a71?rik=XUUtkwz39WJwxg&pid=ImgRaw&r=0')"
+        ></div>
+      </div>
+
+      <!-- Blog Post 4 -->
+      <div class="blog-post flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow-md" data-categories="weight loss health">
+        <!-- Blog Content -->
+        <div class="flex-1">
+          <p class="text-sm text-green-600">Apr 7, 2023</p>
+          <h2 class="text-xl font-bold text-gray-900 post-title">How to Lose Weight Safely: 10 Tips from Nutrition Experts</h2>
+          <p class="text-gray-600 mt-2 post-content">
+            Discover evidence-based strategies for losing weight in a healthy way, such as focusing on whole foods, staying hydrated, and being active.
+          </p>
+          <!-- Read More Button -->
+          <button
+            type="button"
+            class="mt-4 px-4 py-2 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition"
+            onclick="toggleFullContent(this)"
+            data-index="4"
+          >
+            Read more
+          </button>
+          <!-- Full Content (Hidden by Default) -->
+          <div id="full-content-4" class="full-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700">
+              Losing weight safely and effectively requires a balanced approach that promotes long-term health. Here are ten tips from nutrition experts to help you achieve your weight loss goals:
+            </p>
+            <ol class="list-decimal list-inside mt-2 text-gray-700">
+              <li><strong>1. Set Realistic Goals:</strong> Aim for gradual weight loss (1-2 pounds per week) to ensure sustainability.</li>
+              <li><strong>2. Focus on Whole Foods:</strong> Incorporate a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats into your diet.</li>
+              <li><strong>3. Control Portion Sizes:</strong> Be mindful of serving sizes to avoid overeating, even healthy foods.</li>
+              <li><strong>4. Stay Hydrated:</strong> Drink plenty of water throughout the day to support metabolism and reduce hunger.</li>
+              <li><strong>5. Incorporate Regular Exercise:</strong> Combine cardiovascular activities with strength training for optimal results.</li>
+              <li><strong>6. Get Adequate Sleep:</strong> Aim for 7-9 hours of quality sleep each night to support hormonal balance and weight management.</li>
+              <li><strong>7. Manage Stress:</strong> Practice stress-reducing techniques like meditation, yoga, or deep breathing to prevent emotional eating.</li>
+              <li><strong>8. Keep a Food Diary:</strong> Track your food intake to increase awareness of your eating habits and identify areas for improvement.</li>
+              <li><strong>9. Limit Added Sugars and Refined Carbs:</strong> Reduce consumption of sugary beverages, sweets, and processed snacks.</li>
+              <li><strong>10. Seek Support:</strong> Engage with a support system, whether it's friends, family, or a professional, to stay motivated.</li>
+            </ol>
+            <p class="mt-2 text-gray-700">
+              By implementing these strategies, you can create a healthy lifestyle that supports your weight loss journey while maintaining overall well-being.
+            </p>
+            <!-- Social Sharing Buttons -->
+            <div class="social-buttons mt-4 flex space-x-4">
+              <a href="#" title="Share on Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#3b5998" viewBox="0 0 24 24">
+                  <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.35v21.3C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.616h-3.12V24h6.116C23.4 24 24 23.4 24 22.65v-21.3C24 .6 23.4 0 22.675 0z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#1DA1F2" viewBox="0 0 24 24">
+                  <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.945 13.945 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.574 4.897 4.897 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.588 3.417A9.867 9.867 0 0 1 .96 19.54a13.924 13.924 0 0 0 7.548 2.213c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#0077B5" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.25 10.268h-3v-4.5c0-1.355-.024-3.097-1.886-3.097-1.888 0-2.176 1.473-2.176 2.989v4.59h-3v-9h2.879v1.23h.041c.401-.761 1.379-1.562 2.838-1.562 3.037 0 3.6 2.0 3.6 4.609v4.616z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog Image -->
+        <div
+          class="w-full md:w-1/3 bg-center bg-no-repeat bg-cover rounded-xl cursor-pointer"
+          style='background-image: url("https://cdn.usegalileo.ai/sdxl10/da02e1eb-eba8-4693-a920-88c873b3a85d.png");'
+          onclick="openLightbox('https://cdn.usegalileo.ai/sdxl10/da02e1eb-eba8-4693-a920-88c873b3a85d.png')"
+        ></div>
+      </div>
+
+      <!-- Blog Post 5 -->
+      <div class="blog-post flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow-md" data-categories="health disease prevention">
+        <!-- Blog Content -->
+        <div class="flex-1">
+          <p class="text-sm text-green-600">Apr 7, 2023</p>
+          <h2 class="text-xl font-bold text-gray-900 post-title">Understanding Disease Prevention: Key Strategies for a Healthier Life</h2>
+          <p class="text-gray-600 mt-2 post-content">
+            Explore effective disease prevention strategies to maintain optimal health and well-being.
+          </p>
+          <!-- Read More Button -->
+          <button
+            type="button"
+            class="mt-4 px-4 py-2 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition"
+            onclick="toggleFullContent(this)"
+            data-index="5"
+          >
+            Read more
+          </button>
+          <!-- Full Content (Hidden by Default) -->
+          <div id="full-content-5" class="full-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700">
+              Maintaining good health involves more than just managing symptoms—it requires proactive measures to prevent diseases before they occur. Here are key strategies for effective disease prevention:
+            </p>
+            <ol class="list-decimal list-inside mt-2 text-gray-700">
+              <li><strong>Regular Physical Activity:</strong> Engaging in at least 150 minutes of moderate-intensity exercise each week can reduce the risk of chronic diseases such as heart disease, diabetes, and certain cancers.</li>
+              <li><strong>Balanced Diet:</strong> Consuming a diet rich in fruits, vegetables, whole grains, lean proteins, and healthy fats supports immune function and overall health.</li>
+              <li><strong>Vaccinations:</strong> Staying up-to-date with recommended vaccines helps protect against infectious diseases.</li>
+              <li><strong>Regular Health Screenings:</strong> Early detection through screenings for conditions like hypertension, high cholesterol, and cancer can lead to more effective treatments.</li>
+              <li><strong>Stress Management:</strong> Chronic stress can weaken the immune system and increase the risk of various health issues. Practices like meditation, yoga, and deep breathing can help manage stress levels.</li>
+              <li><strong>Healthy Sleep Patterns:</strong> Aim for 7-9 hours of quality sleep each night to support immune function and overall well-being.</li>
+              <li><strong>Avoiding Tobacco and Limiting Alcohol:</strong> Eliminating tobacco use and moderating alcohol consumption can significantly reduce the risk of several diseases, including lung cancer and liver disease.</li>
+              <li><strong>Maintaining a Healthy Weight:</strong> Achieving and maintaining a healthy weight through diet and exercise can lower the risk of numerous health conditions.</li>
+              <li><strong>Good Hygiene Practices:</strong> Regular handwashing and proper sanitation can prevent the spread of infectious diseases.</li>
+              <li><strong>Environmental Awareness:</strong> Reducing exposure to pollutants and toxins in the environment supports long-term health.</li>
+            </ol>
+            <p class="mt-2 text-gray-700">
+              By incorporating these strategies into your daily routine, you can proactively safeguard your health and enhance your quality of life.
+            </p>
+            <!-- Social Sharing Buttons -->
+            <div class="social-buttons mt-4 flex space-x-4">
+              <a href="#" title="Share on Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#3b5998" viewBox="0 0 24 24">
+                  <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.35v21.3C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.616h-3.12V24h6.116C23.4 24 24 23.4 24 22.65v-21.3C24 .6 23.4 0 22.675 0z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#1DA1F2" viewBox="0 0 24 24">
+                  <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.945 13.945 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.574 4.897 4.897 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.588 3.417A9.867 9.867 0 0 1 .96 19.54a13.924 13.924 0 0 0 7.548 2.213c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+              </a>
+              <a href="#" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="#0077B5" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.25 10.268h-3v-4.5c0-1.355-.024-3.097-1.886-3.097-1.888 0-2.176 1.473-2.176 2.989v4.59h-3v-9h2.879v1.23h.041c.401-.761 1.379-1.562 2.838-1.562 3.037 0 3.6 2.0 3.6 4.609v4.616z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Blog Image -->
+         
+        <div
+          class="w-full md:w-1/3 bg-center bg-no-repeat bg-cover rounded-xl cursor-pointer"
+          style='background-image: url("https://th.bing.com/th/id/OIP.OQbmRFfV3UWa_eHpz6a2ggHaLG?rs=1&pid=ImgDetMain");'
+          onclick="openLightbox('https://th.bing.com/th/id/OIP.OQbmRFfV3UWa_eHpz6a2ggHaLG?rs=1&pid=ImgDetMain')"
+        ></div>
+      </div>
+      <!-- Add more blog posts as needed -->
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination" class="flex justify-center mt-8 space-x-2">
+      <!-- Pagination buttons will be dynamically generated here -->
+    </div>
+
+    <!-- Lightbox for Images -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Full Size Image" />
+    </div>
+
+    
+
+    <!-- JavaScript for Toggle Functionality, Search, Filter, Pagination, and Lightbox -->
+    <script>
+      // Function to handle blog post expansion
+      function toggleFullContent(button) {
+        const index = button.getAttribute('data-index');
+        const fullContent = document.getElementById(`full-content-${index}`);
+        const isExpanded = !fullContent.classList.contains('max-h-0');
+
+        if (isExpanded) {
+          // Collapse the content
+          fullContent.classList.remove('max-h-screen', 'opacity-100');
+          fullContent.classList.add('max-h-0', 'opacity-0');
+          button.textContent = 'Read more';
+        } else {
+          // Expand the content
+          fullContent.classList.remove('max-h-0', 'opacity-0');
+          fullContent.classList.add('max-h-screen', 'opacity-100');
+          button.textContent = 'Read less';
+        }
+      }
+
+      // Function to handle Search and Filter
+      function filterPosts() {
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        const categoryFilter = document.getElementById('categoryFilter').value;
+        const blogPosts = document.querySelectorAll('.blog-post');
+
+        blogPosts.forEach(post => {
+          const title = post.querySelector('.post-title').textContent.toLowerCase();
+          const content = post.querySelector('.post-content').textContent.toLowerCase();
+          const categories = post.getAttribute('data-categories').toLowerCase();
+
+          const matchesSearch = title.includes(searchQuery) || content.includes(searchQuery);
+          const matchesCategory = categoryFilter === 'All' || categories.includes(categoryFilter.toLowerCase());
+
+          if (matchesSearch && matchesCategory) {
+            post.style.display = 'flex';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+
+        // Reset to first page after filtering
+        currentPage = 1;
+        setupPagination();
+        displayPosts();
+      }
+
+      // Pagination Variables
+      let currentPage = 1;
+      const postsPerPage = 5;
+
+      // Function to setup Pagination
+      function setupPagination() {
+        const blogPosts = document.querySelectorAll('.blog-post');
+        const visiblePosts = Array.from(blogPosts).filter(post => post.style.display !== 'none');
+        const totalPages = Math.ceil(visiblePosts.length / postsPerPage);
+        const paginationContainer = document.getElementById('pagination');
+
+        // Clear existing pagination
+        paginationContainer.innerHTML = '';
+
+        if (totalPages <= 1) return; // No need for pagination
+
+        // Create pagination buttons
+        for (let i = 1; i <= totalPages; i++) {
+          const button = document.createElement('button');
+          button.textContent = i;
+          button.classList.add('px-3', 'py-1', 'border', 'border-gray-300', 'rounded-md', 'hover:bg-green-100', 'transition');
+
+          if (i === currentPage) {
+            button.classList.add('bg-green-500', 'text-white', 'border-green-500');
+          }
+
+          button.addEventListener('click', () => {
+            currentPage = i;
+            displayPosts();
+            setupPagination();
+          });
+
+          paginationContainer.appendChild(button);
+        }
+      }
+
+      // Function to display posts based on current page
+      function displayPosts() {
+        const blogPosts = document.querySelectorAll('.blog-post');
+        const visiblePosts = Array.from(blogPosts).filter(post => post.style.display !== 'none');
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+
+        blogPosts.forEach((post, index) => {
+          if (post.style.display !== 'none') {
+            if (index >= start && index < end) {
+              post.style.display = 'flex';
+            } else {
+              post.style.display = 'none';
+            }
+          }
+        });
+      }
+
+      // Function to open Lightbox
+      function openLightbox(imageUrl) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = imageUrl;
+        lightbox.style.display = 'flex';
+      }
+
+      // Function to close Lightbox
+      function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'none';
+      }
+
+      // Initialize Pagination on Page Load
+      document.addEventListener('DOMContentLoaded', () => {
+        setupPagination();
+        displayPosts();
+      });
+    </script>
+  </div>
+</body>
+</html>

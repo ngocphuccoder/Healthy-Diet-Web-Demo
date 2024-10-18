@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap"
+    />
+    <title>Healthy Plate Login</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      /* Custom CSS */
+      .custom-bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url("https://cdn.usegalileo.ai/stability/bfcef8c8-9ccd-4d5b-9d1d-d20b02001514.png");
+        background-size: cover;
+        background-position: center;
+      }
+      .custom-checkbox:checked {
+        background-image: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(17,24,17)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e');
+      }
+
+      /* Error and Success Messages */
+      .error-message {
+        color: #dc2626; /* Tailwind's red-600 */
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+      .success-message {
+        color: #16a34a; /* Tailwind's green-600 */
+        font-size: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+      }
+    </style>
+    <script>
+      // Function to handle login submission, show success message and redirect to home
+      function handleLogin(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Clear previous error messages
+        clearErrors();
+
+        // Get form values
+        const identifier = event.target.elements[0].value.trim(); // Username or Email
+        const password = event.target.elements[1].value;
+        const keepMeSignedIn = event.target.elements[2].checked;
+
+        let isValid = true;
+
+        // Validate Identifier (Username or Email)
+        if (identifier === "") {
+          displayError(0, "Username or Email is required.");
+          isValid = false;
+        }
+
+        // Validate Password
+        if (password === "") {
+          displayError(1, "Password is required.");
+          isValid = false;
+        }
+
+        if (isValid) {
+          // Check credentials
+          const user = getUser(identifier);
+
+          if (!user) {
+            displayError(0, "Email không tồn tại."); // "Email does not exist."
+            return;
+          }
+
+          if (user.password !== password) {
+            displayError(1, "Mật khẩu không đúng."); // "Incorrect password."
+            return;
+          }
+
+          // Simulate login success
+          const successMessage = document.getElementById("successMessage");
+          successMessage.textContent = "Đăng Nhập Thành Công!"; // "Login Successful!"
+          successMessage.classList.add("success-message");
+
+          // Optionally, handle "Keep me signed in" functionality
+          if (keepMeSignedIn) {
+            // For simulation purposes, we can set a flag in localStorage
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+          } else {
+            sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+          }
+
+          // Redirect to home page after a short delay
+          setTimeout(() => {
+            window.location.href = "home.html"; // Change this to your home page URL
+          }, 2000);
+        }
+      }
+
+      // Function to display error messages
+      function displayError(index, message) {
+        const errorElement = document.getElementById(`error-${index}`);
+        if (errorElement) {
+          errorElement.textContent = message;
+        }
+      }
+
+      // Function to clear all error messages
+      function clearErrors() {
+        for (let i = 0; i < 2; i++) { // Only two fields in login
+          const errorElement = document.getElementById(`error-${i}`);
+          if (errorElement) {
+            errorElement.textContent = "";
+          }
+        }
+        const successMessage = document.getElementById("successMessage");
+        successMessage.textContent = "";
+        successMessage.classList.remove("success-message");
+      }
+
+      // Function to get user by email or username (simulated using localStorage)
+      function getUser(identifier) {
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        // Check by email first
+        let user = users.find(user => user.email === identifier);
+        if (user) return user;
+        // Then check by username if applicable
+        // Assuming you have a 'username' field in your users
+        user = users.find(user => user.username === identifier);
+        return user || null;
+      }
+    </script>
+  </head>
+  <body class="min-h-screen bg-white font-sans">
+    <div class="relative flex flex-col min-h-screen justify-center items-center">
+      <header class="flex items-center justify-between w-full p-4 bg-white border-b border-gray-200">
+        <div class="flex items-center gap-4 text-gray-900">
+          <h2 class="text-lg font-bold tracking-tight">
+            <img src="./img/Green LiFE.png" height="150px" width="150px" alt="Logo" />
+          </h2>
+        </div>
+      </header>
+
+      <!-- Login Card -->
+      <div class="max-w-lg w-full bg-white p-8 shadow-md rounded-lg">
+        <div class="custom-bg p-6 text-center rounded-xl text-white">
+          <h1 class="text-4xl font-black">Login!</h1>
+          <p class="text-base mt-2">Log in to your Healthy Plate account</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <!-- Username/Email Input -->
+          <div class="mt-6">
+            <label class="block">
+              <span class="text-gray-700 font-medium">Username or Email</span>
+              <input
+                type="text"
+                placeholder="Enter your username or email"
+                class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+                required
+              />
+            </label>
+            <div id="error-0" class="error-message"></div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="mt-6">
+            <label class="block">
+              <span class="text-gray-700 font-medium">Password</span>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                class="w-full mt-2 py-2 px-4 rounded-md border border-gray-300 focus:border-green-600 focus:outline-none"
+                required
+              />
+            </label>
+            <div id="error-1" class="error-message"></div>
+          </div>
+
+          <!-- Checkbox -->
+          <div class="flex items-center mt-6">
+            <input
+              type="checkbox"
+              class="custom-checkbox h-5 w-5 border-gray-300 text-green-600 rounded focus:ring-0"
+            />
+            <span class="ml-3 text-gray-700">Keep me signed in</span>
+          </div>
+
+          <!-- Success Message -->
+          <div id="successMessage"></div>
+
+          <!-- Login Button -->
+          <div class="mt-6">
+            <button
+              type="submit"
+              class="w-full py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition"
+            >
+              Đăng nhập
+            </button>
+          </div>
+        </form>
+
+        <!-- Sign Up Redirect -->
+        <p class="mt-6 text-center text-sm text-gray-600">
+          New to Healthy Plate?
+          <a href="./sign.html" class="text-green-600 underline">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

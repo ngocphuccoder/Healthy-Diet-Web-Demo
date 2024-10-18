@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+/* Countdown container */
+.countdown-container {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #70e960, #a1a969); /* Gradient background */
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin-left: 200px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Countdown title */
+.countdown-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Countdown timer section */
+#countdown {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Individual time sections (Days, Hours, Minutes, Seconds) */
+#countdown #days {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    width: 110px;
+    margin: 0 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+#countdown #hours {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    width: 110px;
+    margin: 0 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+#countdown #minutes {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    width: 110px;
+    margin: 0 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+#countdown #seconds {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    width: 110px;
+    margin: 0 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect */
+#countdown div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Time labels */
+#countdown div span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.6em;
+    font-weight: 300;
+    color: #ffedbc;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    #countdown {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #countdown div {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+.gallery-container {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #fff;
+}
+
+.gallery-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.gallery-item {
+    width: 300px;
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.gallery-item p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
